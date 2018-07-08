@@ -1,0 +1,92 @@
+;
+var enusLocale = 'en-us',
+  enukLocale = 'en-gb',
+  eneuLocale = 'en-eu',
+  enintLocale = 'en-int',
+  defaultLocale = enusLocale,
+  localeList = [enusLocale, enukLocale, eneuLocale, enintLocale];
+
+var enukNations = ["GB", "GG", "IM", "JE"],
+  enusNations = ["US"],
+  enameNations = ["BR", "MX", "CO", "AR", "CA", "PE", "VE", "CL", "EC", "GT", "CU", "HT", "BO", "DO", "HN", "PY", "NI", "SV", "CR", "PA", "PR", "UY", "JM", "TT", "GY", "SR", "BS", "BZ", "BB", "LC", "CW", "AW", "VC", "GD", "AG", "DM", "BM", "KY", "GL", "KN", "SX", "VG", "AI", "MS", "FK"],
+  eneuNations = ["AD", "BE", "AT", "CY", "EE", "FR", "FI", "DE", "GR", "IE", "IT", "MT", "LU", "MC", "ME", "NL", "PT", "SM", "SK", "SI", "VA", "ES"];
+
+var freeGeoIpUrl = '//freegeoip.net/json/',
+  origin = window.location.origin,
+  href = window.location.href;
+
+var emlocale = {
+  init: function () {
+    if (location.href.indexOf('thank-you')) {
+      return;
+    }
+    if (emlocale.getOverride()) {
+      return;
+    };
+    emlocale.detect();
+  },
+  detect: function (url, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", freeGeoIpUrl, true);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200 && xhr.responseText) {
+          var resp = JSON.parse(xhr.responseText);
+          var userLocale = emlocale.getUserLocale(resp.country_code);
+          var currentLocale = emlocale.getCurrentLocale();
+          document.body.className += (' ' + userLocale);
+          if (userLocale != currentLocale) {
+            return emlocale.redirect(userLocale);
+          };
+        }
+      }
+    };
+    xhr.send(null);
+  },
+  getCurrentLocale: function() {
+    if (href.indexOf(enukLocale) >= 0) {
+      return enukLocale;
+    } else if (href.indexOf(eneuLocale) >= 0) {
+      return eneuLocale;
+    } else if (href.indexOf(enintLocale) >= 0) {
+      return enintLocale;
+    }
+    return enusLocale
+  },
+  getUserLocale: function(cc) {
+    if (!cc) {
+      return 'en-int';
+    }
+    cc = cc.toUpperCase();
+    if (enusNations.indexOf(cc) >= 0) {
+      return 'en-us';
+    } else if (enukNations.indexOf(cc) >= 0) {
+      return 'en-gb';
+    } else if (eneuNations.indexOf(cc) >= 0) {
+      return 'en-eu';
+    }
+    return 'en-int'
+  },
+  getOverride: function() {
+    if ('localStorage' in window) {
+      var currentLocale = emlocale.getCurrentLocale();
+      var override = window.localStorage.getItem('locale');
+      if (override != currentLocale && emlocale.isValidLocale(override)) {
+        return emlocale.redirect(override);
+      }
+      return emlocale.isValidLocale(override);
+    }
+  },
+  isValidLocale: function(l) {
+    return localeList.indexOf(l) > -1;
+  },
+  redirect: function(l) {
+    var currentLocale = emlocale.getCurrentLocale();
+    var replacement = l == defaultLocale ? '' : '/' + l;
+    var url = (window.location.pathname.indexOf(currentLocale) > -1) ? href.replace('/' + currentLocale, replacement) : (window.location.protocol + '//' + window.location.host + '/' + l + window.location.pathname + window.location.hash)
+    window.location.href = url;
+    return true;
+  }
+}
+
+emlocale.init();

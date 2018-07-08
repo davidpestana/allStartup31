@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Plus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Cart-Checkout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-175.000000, -205.000000)" opacity="0.5">
+        <g id="Plus" transform="translate(175.000000, 205.000000)">
+            <g id="Group">
+                <rect id="Rectangle-6" stroke="#000000" x="0.5" y="0.5" width="19" height="19" rx="9.5"></rect>
+                <polygon id="+" fill="#000000" points="10.528 12.744 9.472 12.744 9.472 10.072 6.8 10.072 6.8 9.016 9.472 9.016 9.472 6.344 10.528 6.344 10.528 9.016 13.2 9.016 13.2 10.072 10.528 10.072"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

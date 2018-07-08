@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Cart-Active" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-315.000000, -615.000000)">
+        <g id="Group-3" transform="translate(315.000000, 615.000000)">
+            <g id="Group">
+                <polygon id="Path-2" fill="#FFFFFF" fill-rule="nonzero" points="5.35485179 12.8891783 4.64514821 12.1846779 10 6.79027721 15.3548518 12.1846779 14.6451482 12.8891783 10 8.20972279"></polygon>
+                <rect id="Rectangle-3" stroke="#FFFFFF" x="0.5" y="0.5" width="19" height="19" rx="9.5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
